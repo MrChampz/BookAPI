@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  database:
+    image: postgres:latest
+    container_name: bookapi-database
+    environment:
+      - POSTGRES_DB=bookapi
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql
+      - ./.docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
